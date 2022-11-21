@@ -1,0 +1,17 @@
+{
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    },
+    "ignore": [
+      "lib/*.js"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "tab",
+    "lineWidth": 100,
+    "indentSize": 2
+  }
+}

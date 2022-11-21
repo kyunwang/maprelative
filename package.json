@@ -1,0 +1,50 @@
+{
+  "name": "@kyunwang/maprelative",
+  "version": "0.0.1",
+  "private": false,
+  "author": "Kang Yun Wang <me@kyunwang.nl> (https://www.kyunwang.nl)",
+  "license": "MIT",
+  "description": "",
+  "keywords": [],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.min.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.min.js"
+      }
+    }
+  },
+  "types": "./lib/cjs/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "start": "",
+    "packlist": "npx npm-packlist-cli",
+    "publish:test": "npm publish --dry-run",
+    "publish": "npm publish --access=public",
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs && uglifyjs --compress --mangle --output lib/esm/index.min.mjs -- lib/esm/index.mjs",
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json && uglifyjs --compress --mangle --output lib/cjs/index.min.js -- lib/cjs/index.js",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyunwang/maprelative.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kyunwang/maprelative/issues"
+  },
+  "homepage": "https://github.com/kyunwang/maprelative",
+  "devDependencies": {
+    "rome": "^10.0.1",
+    "typescript": "^4.9.3",
+    "uglify-js": "^3.17.4"
+  }
+}
